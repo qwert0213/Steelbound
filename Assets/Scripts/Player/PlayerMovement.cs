@@ -11,14 +11,26 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private int direction = 1;
     [SerializeField] private int currentAttack = 0;
     [SerializeField] private float attackCooldown = 0.0f;
-    [SerializeField] private float rollDuration = 8.0f/14.0f;
+    [SerializeField] private float rollDuration = 8.0f / 14.0f;
     [SerializeField] private float rollCurrentDuration = 0f;
     [SerializeField] private bool grounded = false;
-    [SerializeField] private bool rolling = false; 
+    [SerializeField] private bool rolling = false;
     [Header("Movement Forces")]
     [SerializeField] float speed = 5.0f;
     [SerializeField] float jumpForce = 3.0f;
     [SerializeField] float rollForce = 4.0f;
+    #endregion
+
+    #region Public Getters
+    public int Direction => direction;
+    public int CurrentAttack => currentAttack;
+    public bool IsRolling => rolling;
+    public bool IsGrounded => grounded;
+    public float RollDuration => rollDuration;
+    public float Speed => speed;
+    public float RollForce => rollForce;
+    public float JumpForce => jumpForce;
+    public Animator Animator => animator;
     #endregion
     void Awake()
     {
@@ -26,6 +38,16 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         body = GetComponent<Rigidbody2D>();
         boxCollider = GetComponent<BoxCollider2D>();
+        string controllerPath = "Assets/Animations/Player/Player.controller";
+        RuntimeAnimatorController animatorController = UnityEditor.AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(controllerPath);
+        if (animatorController != null)
+        {
+            animator.runtimeAnimatorController = animatorController;
+        }
+        else
+        {
+            Debug.LogError("Animator Controller could not be loaded from path: " + controllerPath);
+        }
         #endregion
     }
 
@@ -38,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
             body.linearVelocity = new Vector2(inputX * speed, body.linearVelocity.y);
         }
         animator.SetFloat("AirSpeedY", body.linearVelocity.y);
+
         #endregion
 
         #region Direction
