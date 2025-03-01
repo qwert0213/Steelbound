@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Diagnostics.Contracts;
+using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -9,12 +10,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private BoxCollider2D boxCollider;
     [Header("Movement Variables")]
     [SerializeField] private int direction = 1;
-    [SerializeField] private int currentAttack = 0;
-    [SerializeField] private float attackCooldown = 0.0f;
     [SerializeField] private float rollDuration = 8.0f / 14.0f;
     [SerializeField] private float rollCurrentDuration = 0f;
     [SerializeField] private bool grounded = false;
+    [SerializeField] private bool attacking = false;
     [SerializeField] private bool rolling = false;
+    [SerializeField] private bool controllable = true;
+    [Header("Player Stats")]
+    [SerializeField] private int currentAttack = 0;
+    [SerializeField] private float attackDamage = 1;
+    [SerializeField] private float attackCooldown = 0.0f;
+    [SerializeField] private float attackRange = 2.05f;
+    [SerializeField] private float health = 3.0f;
     [Header("Movement Forces")]
     [SerializeField] float speed = 5.0f;
     [SerializeField] float jumpForce = 3.0f;
@@ -24,13 +31,18 @@ public class PlayerMovement : MonoBehaviour
     #region Public Getters
     public int Direction => direction;
     public int CurrentAttack => currentAttack;
+    public float AttackDamage => attackDamage;
     public bool IsRolling => rolling;
+    public bool IsAttacking => attacking;
     public bool IsGrounded => grounded;
+    public bool Controllable => controllable;
     public float RollDuration => rollDuration;
     public float Speed => speed;
     public float RollForce => rollForce;
     public float JumpForce => jumpForce;
+    public float AttackRange => attackRange;
     public Animator Animator => animator;
+    public Rigidbody2D Body => body;
     #endregion
     void Awake()
     {
@@ -53,6 +65,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (controllable){
         #region Speed
         float inputX = Input.GetAxis("Horizontal");
         if (!rolling)
@@ -90,6 +103,7 @@ public class PlayerMovement : MonoBehaviour
         #region Attack
         if (Input.GetMouseButtonDown(0) && attackCooldown > 0.25f && !rolling)
         {
+            attacking = true;
             currentAttack++;
             if (currentAttack > 3) currentAttack = 1;
             if (attackCooldown > 1.0f) currentAttack = 1;
@@ -132,6 +146,10 @@ public class PlayerMovement : MonoBehaviour
 
         #region Cooldowns
         attackCooldown += Time.deltaTime;
+        if (attackCooldown > 5/14f)
+        {
+            attacking = false;
+        }
         if (rolling)
         {
             rollCurrentDuration += Time.deltaTime;
@@ -140,7 +158,8 @@ public class PlayerMovement : MonoBehaviour
         {
             rolling = false;
         }
-        #endregion
+            #endregion
+        }
     }
     #region Collision Detection
     private void OnCollisionStay2D(Collision2D collision) // Grounded = true
@@ -159,6 +178,17 @@ public class PlayerMovement : MonoBehaviour
             grounded = false;
             animator.SetBool("Grounded", grounded);
         }
+    }
+    #endregion
+
+    #region Damage Taking
+    public void TakeDamage(float damage) {
+        health -= damage;
+        if (health <= 0)
+        {
+            animator.SetTrigger("Die");
+            controllable = false;
+        } else animator.SetTrigger("Hurt");
     }
     #endregion
 }
