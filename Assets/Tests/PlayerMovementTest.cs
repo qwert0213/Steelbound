@@ -1,6 +1,6 @@
 using NUnit.Framework;
 using UnityEngine;
-
+using Player;
 [TestFixture]
 public class PlayerMovementTests
 {
@@ -19,6 +19,7 @@ public class PlayerMovementTests
         playerMovement = player.AddComponent<PlayerMovement>();
         animator = player.AddComponent<Animator>();
         boxCollider = player.GetComponent<BoxCollider2D>();
+        playerMovement.GetType().GetField("animator", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).SetValue(playerMovement, animator);
 
         string controllerPath = "Assets/Animations/Player/Player.controller";
         RuntimeAnimatorController animatorController = UnityEditor.AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(controllerPath);
@@ -50,5 +51,31 @@ public class PlayerMovementTests
     public void TestAnimatorControllerAssignment()
     {
         Assert.AreEqual(animator.runtimeAnimatorController.name, "Player", "Animator Controller should be 'Player'.");
+    }
+
+    [Test]
+    public void TestDefaultValues()
+    {
+        Assert.AreEqual(1, playerMovement.Direction);
+        Assert.AreEqual(5.0f, playerMovement.Speed);
+        Assert.AreEqual(3.0f, playerMovement.JumpForce);
+        Assert.AreEqual(4.0f, playerMovement.RollForce);
+    }
+
+    [Test]
+    public void TestTakingDamage()
+    {
+        float initialHealth = playerMovement.GetType().GetField("health", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(playerMovement) as float? ?? 0f;
+        playerMovement.TakeDamage(1.0f);
+        float newHealth = playerMovement.GetType().GetField("health", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(playerMovement) as float? ?? 0f;
+        Assert.AreEqual(initialHealth - 1.0f, newHealth);
+    }
+
+    [Test]
+    public void TestDeath()
+    {
+        playerMovement.TakeDamage(playerMovement.GetType().GetField("health", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(playerMovement) as float? ?? 0f);
+        bool controllable = (bool)playerMovement.GetType().GetField("controllable", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(playerMovement);
+        Assert.IsFalse(controllable);
     }
 }

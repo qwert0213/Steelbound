@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Player;
 
 public class EnemyLogic : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField] protected float attackResetCooldown;
     [SerializeField] protected bool damageable;
     [SerializeField] protected bool canAttack;
+    [SerializeField] protected bool blockableAttack;
     [Header("Movement Variables")]
     [SerializeField] protected int direction = -1;
     [SerializeField] protected float patrolDistance;
@@ -25,7 +27,71 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField] protected float positionX;
     [SerializeField] protected float startingPositionX;
     [SerializeField] protected bool patrolling;
+
+    float enemyPlayerDistance;
     #endregion
+    void Update()
+    {
+        positionX = transform.position.x;
+        enemyPlayerDistance = Mathf.Abs(player.transform.position.x - positionX);
+        #region Direction
+        if (positionX > startingPositionX + patrolDistance)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            direction = -1;
+        }
+        else if (positionX < startingPositionX - patrolDistance)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            direction = 1;
+        }
+        #endregion
+
+        #region Patrol
+        if (enemyPlayerDistance > visionRange)
+        {
+            body.linearVelocity = new Vector2(direction * speed, body.linearVelocity.y);
+            animator.SetBool("Patrolling", true);
+        }
+        else animator.SetBool("Patrolling", false);
+        #endregion
+
+        #region Damage Taking
+        if (damageable && player.IsAttacking && enemyPlayerDistance < player.AttackRange)
+        {
+            if ((player.Direction == 1 && player.transform.position.x - positionX < 0) || (player.Direction == -1 && player.transform.position.x - positionX > 0))
+            {
+                health -= player.AttackDamage;
+                if (health <= 0)
+                {
+                    animator.SetTrigger("Die");
+                }
+                else
+                {
+                    damageable = false;
+                    animator.SetBool("Damageable", false);
+                    damageCooldown = 0;
+                }
+            }
+        }
+        damageCooldown += Time.deltaTime;
+        if (damageCooldown > 1.0f)
+        {
+            damageable = true;
+            animator.SetBool("Damageable", true);
+        }
+        #endregion
+
+        #region Attack Start
+        if (enemyPlayerDistance < attackRange && canAttack && player.Controllable)
+        {
+            canAttack = false;
+            direction = -1 * player.Direction;
+            StartCoroutine(Attack());
+        }
+        #endregion
+
+    }
 
     #region Delayed actions
     protected IEnumerator Attack()
@@ -44,14 +110,18 @@ public class EnemyLogic : MonoBehaviour
     #region Animation Events
     public void Dead()
     {
-        Destroy(gameObject);
+        if (Application.IsPlaying(gameObject))
+        {
+            Destroy(gameObject); 
+        }
+        else
+        {
+            DestroyImmediate(gameObject);
+        }
     }
     public void TryDamagePlayer()
     {
-        if (Mathf.Abs(player.transform.position.x - positionX) < attackRange)
-        {
-            player.TakeDamage(damage);
-        }
+        if (enemyPlayerDistance < attackRange && !(blockableAttack && player.Blocking)) player.TakeDamage(damage);
     }
     #endregion
 }
