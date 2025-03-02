@@ -10,6 +10,7 @@ namespace Player
         [SerializeField] private Animator animator;
         [SerializeField] private Rigidbody2D body;
         [SerializeField] private BoxCollider2D boxCollider;
+        [SerializeField] private Health healthUi;
         [Header("Movement Variables")]
         [SerializeField] private int direction = 1;
         [SerializeField] private float rollDuration = 8.0f / 14.0f;
@@ -55,6 +56,7 @@ namespace Player
             animator = GetComponent<Animator>();
             body = GetComponent<Rigidbody2D>();
             boxCollider = GetComponent<BoxCollider2D>();
+            healthUi = GameObject.FindGameObjectWithTag("Healthbar").GetComponent<Health>();
             string controllerPath = "Assets/Animations/Player/Player.controller";
             RuntimeAnimatorController animatorController = UnityEditor.AssetDatabase.LoadAssetAtPath<RuntimeAnimatorController>(controllerPath);
             if (animatorController != null)
@@ -74,7 +76,7 @@ namespace Player
             {
                 #region Speed
                 float inputX = Input.GetAxis("Horizontal");
-                if (!rolling)
+                if (!rolling && !blocking)
                 {
                     body.linearVelocity = new Vector2(inputX * speed, body.linearVelocity.y);
                 }
@@ -96,7 +98,7 @@ namespace Player
                 #endregion
 
                 #region Run
-                if (Mathf.Abs(inputX) > 0 && !rolling)
+                if (Mathf.Abs(inputX) > 0 && !rolling && !blocking)
                 {
                     animator.SetBool("Running", true);
                 }
@@ -107,7 +109,7 @@ namespace Player
                 #endregion
 
                 #region Attack
-                if (Input.GetMouseButtonDown(0) && attackCooldown > 0.25f && !rolling)
+                if (Input.GetMouseButtonDown(0) && attackCooldown > 0.25f && !rolling && !blocking)
                 {
                     attacking = true;
                     currentAttack++;
@@ -133,7 +135,7 @@ namespace Player
                 #endregion
 
                 #region Roll
-                else if (Input.GetKeyDown(KeyCode.LeftShift) && !rolling && grounded)
+                else if (Input.GetKeyDown(KeyCode.LeftShift) && !rolling && grounded && !blocking)
                 {
                     rolling = true;
                     rollCurrentDuration = 0.0f;
@@ -143,7 +145,7 @@ namespace Player
                 #endregion
 
                 #region Jump
-                else if (Input.GetKeyDown(KeyCode.Space) && grounded && !rolling)
+                else if (Input.GetKeyDown(KeyCode.Space) && grounded && !rolling && !blocking)
                 {
                     animator.SetTrigger("Jump");
                     grounded = false;
@@ -193,6 +195,7 @@ namespace Player
         public void TakeDamage(float damage)
         {
             health -= damage;
+            healthUi.UpdateHealth();
             if (health <= 0)
             {
                 animator.SetTrigger("Die");
