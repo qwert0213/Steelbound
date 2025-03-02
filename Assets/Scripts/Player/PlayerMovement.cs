@@ -76,6 +76,8 @@ namespace Player
             {
                 #region Speed
                 float inputX = Input.GetAxis("Horizontal");
+
+                CheckGrounded();
                 if (!rolling && !blocking)
                 {
                     body.linearVelocity = new Vector2(inputX * speed, body.linearVelocity.y);
@@ -171,23 +173,14 @@ namespace Player
                 #endregion
             }
         }
-        #region Collision Detection
-        private void OnCollisionStay2D(Collision2D collision) // Grounded = true
+        #region Grounded Detection
+        private void CheckGrounded()
         {
-            if (collision.collider.CompareTag("ground"))
-            {
-                grounded = true;
-                animator.SetBool("Grounded", grounded);
-            }
-        }
-
-        private void OnCollisionExit2D(Collision2D collision) // Grounded = false
-        {
-            if (collision.collider.CompareTag("ground"))
-            {
-                grounded = false;
-                animator.SetBool("Grounded", grounded);
-            }
+            float rayLength = 0.2f;
+            Vector2 rayOrigin = new Vector2(transform.position.x, transform.position.y - boxCollider.bounds.extents.y - 0.1f);
+            RaycastHit2D hit = Physics2D.Raycast(rayOrigin, Vector2.down, rayLength, LayerMask.GetMask("Ground"));
+            grounded = hit.collider != null;
+            animator.SetBool("Grounded", grounded);
         }
         #endregion
 

@@ -53,7 +53,12 @@ public class EnemyLogic : MonoBehaviour
             body.linearVelocity = new Vector2(direction * speed, body.linearVelocity.y);
             animator.SetBool("Patrolling", true);
         }
-        else animator.SetBool("Patrolling", false);
+        else
+        {
+            if (player.Direction == 1) direction = -1;
+            else direction = -1;
+            animator.SetBool("Patrolling", false);
+        }
         #endregion
 
         #region Damage Taking
@@ -121,7 +126,7 @@ public class EnemyLogic : MonoBehaviour
     }
     public void TryDamagePlayer()
     {
-        if (enemyPlayerDistance < attackRange && !(blockableAttack && player.Blocking)) player.TakeDamage(damage);
+        if (enemyPlayerDistance < attackRange && !(blockableAttack && player.Blocking && (!player.Blocking || (player.Blocking && (direction != player.Direction))))) player.TakeDamage(damage);
     }
     #endregion
 }

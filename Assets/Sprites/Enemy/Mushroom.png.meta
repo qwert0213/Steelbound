@@ -5,7 +5,7 @@ AssetOrigin:
   productId: 222174
   packageName: Asset FTTGR
   packageVersion: 1.3
-  assetPath: Assets/Asset FTTGR/Sprites/Characters/Enemies/Mushroom.png
+  assetPath: Assets/Sprites/Enemy/Mushroom.png
   uploadId: 503789
 TextureImporter:
   internalIDToNameTable:

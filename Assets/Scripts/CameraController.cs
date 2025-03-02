@@ -13,8 +13,8 @@ public class CameraController : MonoBehaviour
     }
     private void Update()
     {
-        transform.position = new Vector3(player.transform.position.x + lookAhead, transform.position.y, transform.position.z);
-        lookAhead = Mathf.Lerp(lookAhead, (aheadDistance * player.transform.localScale.x), Time.deltaTime * cameraSpeed);
+            transform.position = new Vector3(player.transform.position.x + lookAhead, player.transform.position.y + 2.3f, transform.position.z);
+            lookAhead = Mathf.Lerp(lookAhead, (aheadDistance * player.transform.localScale.x), Time.deltaTime * cameraSpeed);
     }
 
 }
