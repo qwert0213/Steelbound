@@ -20,8 +20,10 @@ namespace Player
         [SerializeField] private bool rolling = false;
         [SerializeField] private bool controllable = true;
         [SerializeField] private bool blocking = false;
+        [SerializeField] private bool interacting = false;
         [Header("Player Stats")]
         [SerializeField] private int currentAttack = 0;
+        [SerializeField] private int score = 0;
         [SerializeField] private float attackDamage = 1;
         [SerializeField] private float attackCooldown = 0.0f;
         [SerializeField] private float attackRange = 2.05f;
@@ -35,6 +37,7 @@ namespace Player
         #region Public Getters
         public int Direction => direction;
         public int CurrentAttack => currentAttack;
+        public int Score => score;
         public float AttackDamage => attackDamage;
         public float Health => health;
         public bool IsRolling => rolling;
@@ -42,6 +45,7 @@ namespace Player
         public bool IsGrounded => grounded;
         public bool Controllable => controllable;
         public bool Blocking => blocking;
+        public bool Interacting => interacting;
         public float RollDuration => rollDuration;
         public float Speed => speed;
         public float RollForce => rollForce;
@@ -154,6 +158,11 @@ namespace Player
                     animator.SetBool("Grounded", grounded);
                     body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
                 }
+                #endregion
+
+                #region Interact
+                if (Input.GetKeyDown(KeyCode.E) && !rolling && !blocking) interacting = true;
+                else interacting = false;
                 #endregion
 
                 #region Cooldowns

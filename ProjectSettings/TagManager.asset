@@ -7,6 +7,9 @@ TagManager:
   - ground
   - PlayerDamage
   - Healthbar
+  - Text
+  - Score
+  - GoldenCoin
   layers:
   - Default
   - TransparentFX
