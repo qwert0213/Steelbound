@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 5326353989672869434}
   - component: {fileID: -3678516424692656397}
   - component: {fileID: 3743935330074388622}
-  - component: {fileID: 8192498237788045934}
   - component: {fileID: 7712202163134610720}
+  - component: {fileID: 4678024968310451021}
   m_Layer: 6
   m_Name: Golden Coin
-  m_TagString: Untagged
+  m_TagString: Coin
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,20 +154,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &8192498237788045934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 707634542470575706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0579f07f15298d4a84b2b58c7308a4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  score: 1
-  coinCounter: {fileID: 0}
 --- !u!61 &7712202163134610720
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -214,3 +200,18 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 5.175562, y: 0.9869455}
   m_EdgeRadius: 0
+--- !u!114 &4678024968310451021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 707634542470575706}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b58e603aadf5c64ba7aec96f213ca62, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amount: 0
+  collect: 0
+  coinCounter: {fileID: 0}

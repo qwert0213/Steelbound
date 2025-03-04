@@ -1,4 +1,3 @@
-using Player;
 using UnityEngine;
 
 public class Chest : MonoBehaviour
@@ -8,6 +7,7 @@ public class Chest : MonoBehaviour
     [SerializeField] private Animator animator;
     [SerializeField] private Transform chestPosition;
     [SerializeField] private BoxCollider2D self;
+    [SerializeField] private KeyCount key;
     [SerializeField] private bool opened = false;
     [SerializeField] private GameObject coinPrefab;
     #endregion
@@ -19,16 +19,18 @@ public class Chest : MonoBehaviour
         chestPosition = GetComponent<Transform>();
         self = GetComponent<BoxCollider2D>();
         player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
+        key = GameObject.FindGameObjectWithTag("KeyScore").GetComponent<KeyCount>();
         #endregion
     }
 
     private void Update()
     {
         #region TryOpening
-        if (!opened && player.Interacting && Mathf.Abs(player.transform.position.x - chestPosition.position.x) < player.AttackRange && Mathf.Abs(player.transform.position.y - chestPosition.position.y) < player.AttackRange)
+        if (!opened && player.Interacting && key.Count > 0 && Mathf.Abs(player.transform.position.x - chestPosition.position.x) < player.AttackRange && Mathf.Abs(player.transform.position.y - chestPosition.position.y) < player.AttackRange)
         {
             opened = true;
             animator.SetTrigger("Open");
+            key.AddQuantity(-1);
             self.enabled = false;
         }
         #endregion

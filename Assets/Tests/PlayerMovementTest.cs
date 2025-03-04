@@ -1,6 +1,5 @@
 using NUnit.Framework;
 using UnityEngine;
-using Player;
 [TestFixture]
 public class PlayerMovementTests
 {

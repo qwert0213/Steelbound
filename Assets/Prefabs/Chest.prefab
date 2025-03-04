@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8111458144506247935}
   - component: {fileID: -6505031349723798491}
   - component: {fileID: 5741253361914620997}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Chest
-  m_TagString: Untagged
+  m_TagString: ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,5 +174,6 @@ MonoBehaviour:
   animator: {fileID: 0}
   chestPosition: {fileID: 0}
   self: {fileID: 0}
+  key: {fileID: 0}
   opened: 0
   coinPrefab: {fileID: 707634542470575706, guid: 2d145d638be1e6741b7ff46ee10205c1, type: 3}

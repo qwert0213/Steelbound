@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics.Contracts;
 using UnityEngine;
 
-namespace Player
-{
+
     public class PlayerMovement : MonoBehaviour
     {
         #region Fields
@@ -23,7 +22,6 @@ namespace Player
         [SerializeField] private bool interacting = false;
         [Header("Player Stats")]
         [SerializeField] private int currentAttack = 0;
-        [SerializeField] private int score = 0;
         [SerializeField] private float attackDamage = 1;
         [SerializeField] private float attackCooldown = 0.0f;
         [SerializeField] private float attackRange = 2.05f;
@@ -37,7 +35,6 @@ namespace Player
         #region Public Getters
         public int Direction => direction;
         public int CurrentAttack => currentAttack;
-        public int Score => score;
         public float AttackDamage => attackDamage;
         public float Health => health;
         public bool IsRolling => rolling;
@@ -206,5 +203,5 @@ namespace Player
             else animator.SetTrigger("Hurt");
         }
         #endregion
+        
     }
-}

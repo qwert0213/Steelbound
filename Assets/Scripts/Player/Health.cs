@@ -1,6 +1,6 @@
-using Player;
 using UnityEngine;
 using UnityEngine.UI;
+
 public class Health : MonoBehaviour
 {
     private Slider slider;

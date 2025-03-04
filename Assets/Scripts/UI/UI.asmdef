@@ -1,10 +1,12 @@
 {
-    "name": "Player",
+    "name": "UI",
     "rootNamespace": "",
-    "references": [],
+    "references": [
+        "GUID:7afd4a0b736358940b7f1007b27c9976"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
-    "allowUnsafeCode": false,
+    "allowUnsafeCode": true,
     "overrideReferences": false,
     "precompiledReferences": [],
     "autoReferenced": true,
