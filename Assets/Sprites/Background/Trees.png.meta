@@ -1,0 +1,608 @@
+fileFormatVersion: 2
+guid: 287f97efb1ca60c42be239ca28392a43
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -368401321789775361
+    second: LampPost
+  - first:
+      213: -4206819594563279181
+    second: Tree1
+  - first:
+      213: 566846315969825457
+    second: Tree2
+  - first:
+      213: -983121831306131238
+    second: Tree3
+  - first:
+      213: -9150735976156324452
+    second: Tent
+  - first:
+      213: -1050146069433883852
+    second: BonfireStones
+  - first:
+      213: 3754962894339544984
+    second: HighFire1
+  - first:
+      213: 3872367889646283263
+    second: HighFire2
+  - first:
+      213: -389087280608379294
+    second: HighFire3
+  - first:
+      213: 8002333480267911400
+    second: HighFire4
+  - first:
+      213: 4030208814000181183
+    second: HighFire5
+  - first:
+      213: -7926080337853386996
+    second: HighFire6
+  - first:
+      213: -5957907480768474131
+    second: HighFire7
+  - first:
+      213: -8952722625416497748
+    second: FireType1_1
+  - first:
+      213: -6474815905490174710
+    second: FireType1_2
+  - first:
+      213: 2051757784263316258
+    second: FireType1_3
+  - first:
+      213: 8538422899418973946
+    second: FireType1_4
+  - first:
+      213: 2558546051751004457
+    second: FireType1_5
+  - first:
+      213: -1454307687701597747
+    second: RoadSign1
+  - first:
+      213: 429415279605046377
+    second: RoadSign2
+  - first:
+      213: 5575579087702807243
+    second: Barrel1
+  - first:
+      213: -545380113026382421
+    second: Barrel2
+  - first:
+      213: -2753597471096352698
+    second: Tree4
+  - first:
+      213: -446867404522521166
+    second: Tree5
+  - first:
+      213: 5089713165793692188
+    second: LampPostLit
+  - first:
+      213: 2713915087196460949
+    second: Rock1
+  - first:
+      213: -4500993874483076431
+    second: Rock2
+  - first:
+      213: 3411122762858479303
+    second: Rock3
+  - first:
+      213: -6081611462039590206
+    second: Column
+  - first:
+      213: -5508807443964245338
+    second: LampPostDirty
+  - first:
+      213: 3914693016000628799
+    second: Torch
+  - first:
+      213: 3062189330265537062
+    second: FireType2_1
+  - first:
+      213: 2748799819732492174
+    second: FireType2_2
+  - first:
+      213: -2994877863233710035
+    second: FireType2_3
+  - first:
+      213: -7033716677687157895
+    second: FireType2_4
+  - first:
+      213: 1648749068166103451
+    second: FireType2_5
+  - first:
+      213: -2213567507432036408
+    second: BranchWinter
+  - first:
+      213: 5833574547336235507
+    second: Fence1
+  - first:
+      213: 6324641151635632663
+    second: Fence2
+  - first:
+      213: -3379549609284833125
+    second: Box1
+  - first:
+      213: -1046941070198520135
+    second: Box2
+  - first:
+      213: 3979068135754789419
+    second: Bush1
+  - first:
+      213: -9222907771542121340
+    second: Bush2
+  - first:
+      213: -7141470251623736366
+    second: Tree6
+  - first:
+      213: -8712274148768584012
+    second: Tree7
+  - first:
+      213: -5752234085001537140
+    second: Tree8
+  - first:
+      213: 5343071225971855845
+    second: Mushroom1
+  - first:
+      213: -5067417587186917036
+    second: Mushroom2
+  - first:
+      213: -1139413452182724931
+    second: Mushroom3
+  - first:
+      213: -1607978952677151495
+    second: Mushroom4
+  - first:
+      213: -7273182288970780907
+    second: Tower
+  - first:
+      213: -2804744358768855969
+    second: M2Browning
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 8
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: iOS
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Rock1
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 104
+        width: 12
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5971be29463c9a520800000000000000
+      internalID: 2713915087196460949
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock2
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 112
+        width: 11
+        height: 5
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b22a3f1be14981c0800000000000000
+      internalID: -4500993874483076431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Rock3
+      rect:
+        serializedVersion: 2
+        x: 105
+        y: 120
+        width: 15
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7cebd65741eb65f20800000000000000
+      internalID: 3411122762858479303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bush1
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 0
+        width: 34
+        height: 17
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b227db0336d783730800000000000000
+      internalID: 3979068135754789419
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bush2
+      rect:
+        serializedVersion: 2
+        x: 284
+        y: 0
+        width: 29
+        height: 22
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 484da013f36a10080800000000000000
+      internalID: -9222907771542121340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tree6
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 72
+        width: 52
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2db92fda4a664ec90800000000000000
+      internalID: -7141470251623736366
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tree7
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 72
+        width: 36
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4be64d042d8c71780800000000000000
+      internalID: -8712274148768584012
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tree8
+      rect:
+        serializedVersion: 2
+        x: 315
+        y: 72
+        width: 59
+        height: 58
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c89d69a8395fb20b0800000000000000
+      internalID: -5752234085001537140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom1
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 72
+        width: 7
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5e1d9a1a8f6662a40800000000000000
+      internalID: 5343071225971855845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom2
+      rect:
+        serializedVersion: 2
+        x: 393
+        y: 72
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45128238d8aeca9b0800000000000000
+      internalID: -5067417587186917036
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom3
+      rect:
+        serializedVersion: 2
+        x: 401
+        y: 72
+        width: 6
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dbed85a808dff20f0800000000000000
+      internalID: -1139413452182724931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Mushroom4
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 72
+        width: 8
+        height: 8
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9fcaf5779af4fa9e0800000000000000
+      internalID: -1607978952677151495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Barrel1: 5575579087702807243
+      Barrel2: -545380113026382421
+      BonfireStones: -1050146069433883852
+      Box1: -3379549609284833125
+      Box2: -1046941070198520135
+      BranchWinter: -2213567507432036408
+      Bush1: 3979068135754789419
+      Bush2: -9222907771542121340
+      Column: -6081611462039590206
+      Fence1: 5833574547336235507
+      Fence2: 6324641151635632663
+      FireType1_1: -8952722625416497748
+      FireType1_2: -6474815905490174710
+      FireType1_3: 2051757784263316258
+      FireType1_4: 8538422899418973946
+      FireType1_5: 2558546051751004457
+      FireType2_1: 3062189330265537062
+      FireType2_2: 2748799819732492174
+      FireType2_3: -2994877863233710035
+      FireType2_4: -7033716677687157895
+      FireType2_5: 1648749068166103451
+      LampPost: -368401321789775361
+      LampPostDirty: -5508807443964245338
+      LampPostLit: 5089713165793692188
+      M2Browning: -2804744358768855969
+      Mushroom1: 5343071225971855845
+      Mushroom2: -5067417587186917036
+      Mushroom3: -1139413452182724931
+      Mushroom4: -1607978952677151495
+      RoadSign1: -1454307687701597747
+      RoadSign2: 429415279605046377
+      Rock1: 2713915087196460949
+      Rock2: -4500993874483076431
+      Rock3: 3411122762858479303
+      Tent: -9150735976156324452
+      Torch: 3914693016000628799
+      Tower: -7273182288970780907
+      Tree1: -4206819594563279181
+      Tree2: 566846315969825457
+      Tree3: -983121831306131238
+      Tree4: -2753597471096352698
+      Tree5: -446867404522521166
+      Tree6: -7141470251623736366
+      Tree7: -8712274148768584012
+      Tree8: -5752234085001537140
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
