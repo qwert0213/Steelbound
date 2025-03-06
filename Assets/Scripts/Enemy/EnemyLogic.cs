@@ -14,6 +14,7 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField] protected float visionRange;
     [SerializeField] protected float attackRange;
     [SerializeField] protected float damage;
+    [SerializeField] protected float pushforce;
     [SerializeField] protected float damageCooldown;
     [SerializeField] protected float attackResetCooldown;
     [SerializeField] protected bool damageable;
@@ -125,7 +126,7 @@ public class EnemyLogic : MonoBehaviour
     }
     public void TryDamagePlayer()
     {
-        if (enemyPlayerDistance < attackRange && !(blockableAttack && player.Blocking && (!player.Blocking || (player.Blocking && (direction != player.Direction))))) player.TakeDamage(damage);
+        if (enemyPlayerDistance < attackRange && !(blockableAttack && player.Blocking && (!player.Blocking || (player.Blocking && (direction != player.Direction))))) player.TakeDamage(damage,pushforce);
     }
     #endregion
 }

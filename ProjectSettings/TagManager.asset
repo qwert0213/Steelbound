@@ -4,7 +4,6 @@
 TagManager:
   serializedVersion: 3
   tags:
-  - ground
   - PlayerDamage
   - Healthbar
   - Score
@@ -12,6 +11,8 @@ TagManager:
   - CoinScore
   - KeyScore
   - Coin
+  - Ground
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -52,11 +53,11 @@ TagManager:
   - name: Background
     uniqueID: 3074576269
     locked: 0
-  - name: Player
-    uniqueID: 368173137
-    locked: 0
   - name: Ground
     uniqueID: 3393070265
+    locked: 0
+  - name: Player
+    uniqueID: 368173137
     locked: 0
   m_RenderingLayers:
   - Default

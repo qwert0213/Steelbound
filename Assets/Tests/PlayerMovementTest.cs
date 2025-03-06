@@ -65,7 +65,7 @@ public class PlayerMovementTests
     public void TestTakingDamage()
     {
         float initialHealth = playerMovement.GetType().GetField("health", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(playerMovement) as float? ?? 0f;
-        playerMovement.TakeDamage(1.0f);
+        playerMovement.TakeDamage(1.0f, 3.0f);
         float newHealth = playerMovement.GetType().GetField("health", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(playerMovement) as float? ?? 0f;
         Assert.AreEqual(initialHealth - 1.0f, newHealth);
     }
@@ -73,7 +73,7 @@ public class PlayerMovementTests
     [Test]
     public void TestDeath()
     {
-        playerMovement.TakeDamage(playerMovement.GetType().GetField("health", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(playerMovement) as float? ?? 0f);
+        playerMovement.TakeDamage(playerMovement.GetType().GetField("health", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(playerMovement) as float? ?? 0f, 3.0f);
         bool controllable = (bool)playerMovement.GetType().GetField("controllable", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Instance).GetValue(playerMovement);
         Assert.IsFalse(controllable);
     }

@@ -21,6 +21,7 @@ public class MushroomLogic : EnemyLogic
         attackResetCooldown = 1.2f;
         health = 2;
         damage = 1;
+        pushforce = 5.0f;
         patrolling = true;
         damageable = true;
         canAttack = true;
