@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 
 public class PlayerMovement : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private Rigidbody2D body;
     [SerializeField] private BoxCollider2D boxCollider;
     [SerializeField] private Health healthUi;
+    public SettingsManager settingsManager;
     [Header("Movement Variables")]
     [SerializeField] private int direction = 1;
     [SerializeField] private float rollDuration = 8.0f / 14.0f;
@@ -70,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         {
             Debug.LogError("Animator Controller could not be loaded from path: " + controllerPath);
         }
+        settingsManager = SettingsManager.Instance;
         #endregion
     }
 
@@ -114,7 +117,7 @@ public class PlayerMovement : MonoBehaviour
             #endregion
 
             #region Attack
-            if (Input.GetMouseButtonDown(0) && attackCooldown > 0.25f && !rolling && !blocking)
+            if (Input.GetKeyDown(settingsManager.GetKeyForAction("Attack")) && attackCooldown > 0.25f && !rolling && !blocking)
             {
                 attacking = true;
                 currentAttack++;
@@ -126,7 +129,7 @@ public class PlayerMovement : MonoBehaviour
             #endregion
 
             #region Block
-            else if (Input.GetMouseButtonDown(1) && !rolling)
+            else if (Input.GetKeyDown(settingsManager.GetKeyForAction("Block")) && !rolling)
             {
                 animator.SetTrigger("Block");
                 animator.SetBool("IdleBlock", true);
@@ -140,7 +143,7 @@ public class PlayerMovement : MonoBehaviour
             #endregion
 
             #region Roll
-            else if (Input.GetKeyDown(KeyCode.LeftShift) && !rolling && grounded && !blocking)
+            else if (Input.GetKeyDown(settingsManager.GetKeyForAction("Roll")) && !rolling && grounded && !blocking)
             {
                 rolling = true;
                 rollCurrentDuration = 0.0f;
@@ -160,7 +163,7 @@ public class PlayerMovement : MonoBehaviour
             #endregion
 
             #region Interact
-            if (Input.GetKeyDown(KeyCode.E) && !rolling && !blocking) interacting = true;
+            if (Input.GetKeyDown(settingsManager.GetKeyForAction("Interact")) && !rolling && !blocking) interacting = true;
             else interacting = false;
             #endregion
 

@@ -13,6 +13,7 @@ TagManager:
   - Coin
   - Ground
   - Fire
+  - Settings
   layers:
   - Default
   - TransparentFX

@@ -1,9 +1,7 @@
 {
-    "name": "Player",
+    "name": "Game",
     "rootNamespace": "",
-    "references": [
-        "GUID:99b8dbf11d75e55479c477fed256935d"
-    ],
+    "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
