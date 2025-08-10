@@ -18,6 +18,7 @@ public class SettingsUI : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f;
         settingsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
         volumeSlider.value = SettingsManager.Instance.GetVolume();

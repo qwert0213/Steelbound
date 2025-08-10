@@ -336,6 +336,57 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3517689556118341641, guid: 3696683b23682bc45ad48bc54e002828, type: 3}
   m_PrefabInstance: {fileID: 8218411207635232824}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &676644833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 676644835}
+  - component: {fileID: 676644834}
+  m_Layer: 0
+  m_Name: SettingsManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &676644834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676644833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1c5291274f2e530408db59744e5ef4b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  volumeSlider: {fileID: 843904292}
+  attackButtonText: {fileID: 1236041924}
+  blockButtonText: {fileID: 983557990}
+  rollButtonText: {fileID: 1781859112}
+  interactButtonText: {fileID: 204960748}
+  mainMenuPanel: {fileID: 1232603774}
+  settingsPanel: {fileID: 575986924}
+--- !u!4 &676644835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676644833}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.9236215, y: -0.27314895, z: 1.005718}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &843904292 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5265470840901314601, guid: 3696683b23682bc45ad48bc54e002828, type: 3}
@@ -357,7 +408,6 @@ GameObject:
   m_Component:
   - component: {fileID: 863624600}
   - component: {fileID: 863624599}
-  - component: {fileID: 863624601}
   - component: {fileID: 863624602}
   m_Layer: 0
   m_Name: GameController
@@ -378,6 +428,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b913f44131fa3d24b89563eae66f736b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startButton: {fileID: 0}
+  quitButton: {fileID: 0}
 --- !u!4 &863624600
 Transform:
   m_ObjectHideFlags: 0
@@ -393,25 +445,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &863624601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 863624598}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c5291274f2e530408db59744e5ef4b2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  volumeSlider: {fileID: 843904292}
-  attackButtonText: {fileID: 1236041924}
-  blockButtonText: {fileID: 983557990}
-  rollButtonText: {fileID: 1781859112}
-  interactButtonText: {fileID: 204960748}
-  mainMenuPanel: {fileID: 1232603774}
-  settingsPanel: {fileID: 575986924}
 --- !u!114 &863624602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -753,18 +786,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Settings
       objectReference: {fileID: 0}
-    - target: {fileID: 2937364828606835704, guid: 3696683b23682bc45ad48bc54e002828, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2937364828606835704, guid: 3696683b23682bc45ad48bc54e002828, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2937364828606835704, guid: 3696683b23682bc45ad48bc54e002828, type: 3}
-      propertyPath: m_AnchorMin.x
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3022640584840140151, guid: 3696683b23682bc45ad48bc54e002828, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -849,14 +870,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3587140744653714720, guid: 3696683b23682bc45ad48bc54e002828, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3587140744653714720, guid: 3696683b23682bc45ad48bc54e002828, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3939611850422429848, guid: 3696683b23682bc45ad48bc54e002828, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -886,3 +899,4 @@ SceneRoots:
   - {fileID: 281610041}
   - {fileID: 1231746719}
   - {fileID: 863624600}
+  - {fileID: 676644835}
