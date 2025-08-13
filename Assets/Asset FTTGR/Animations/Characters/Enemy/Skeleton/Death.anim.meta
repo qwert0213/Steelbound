@@ -1,0 +1,15 @@
+fileFormatVersion: 2
+guid: 5a8440cdd179e1e40a16281c463b00a0
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 222174
+  packageName: Asset FTTGR
+  packageVersion: 1.3
+  assetPath: Assets/Asset FTTGR/Animations/Characters/Enemy/Skeleton/Death.anim
+  uploadId: 503789
