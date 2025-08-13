@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool attacking = false;
     [SerializeField] private bool rolling = false;
-    [SerializeField] private bool controllable = true;
+    [SerializeField] public bool controllable = true;
     [SerializeField] private bool blocking = false;
     [SerializeField] private bool interacting = false;
     [SerializeField] private bool immune = false;

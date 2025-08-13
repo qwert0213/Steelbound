@@ -59,14 +59,9 @@ public class SettingsManager : MonoBehaviour
 
     private void Start()
     {
-        // UI kezdeti állapot beállítása
         settingsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
-
-        // UI elemek frissítése
         UpdateUI();
-
-        // Hangerõ slider esemény
         if (volumeSlider != null)
             volumeSlider.onValueChanged.AddListener(SetVolume);
     }
