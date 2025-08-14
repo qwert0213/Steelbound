@@ -2,10 +2,7 @@
     "name": "EditMode",
     "rootNamespace": "",
     "references": [
-        "UnityEngine.TestRunner",
-        "UnityEditor.TestRunner",
-        "Player",
-        "Enemy"
+        "GUID:68ca9b9804ac7664792abe7f35e1f88c"
     ],
     "includePlatforms": [
         "Editor"

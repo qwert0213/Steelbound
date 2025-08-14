@@ -14,7 +14,6 @@ public static class PlayFromMainMenu
     {
         if (state == PlayModeStateChange.ExitingEditMode)
         {
-            // Útvonal a Main Menu scene-re
             string mainMenuPath = "Assets/Scenes/MainMenu.unity";
 
             if (EditorSceneManager.GetActiveScene().path != mainMenuPath)
