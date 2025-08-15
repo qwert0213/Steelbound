@@ -26,6 +26,7 @@ public class MushroomLogic : EnemyLogic
         damageable = true;
         canAttack = true;
         blockableAttack = true;
+        canPatrol = true;
         #endregion
 
     }

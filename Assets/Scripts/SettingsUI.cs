@@ -23,10 +23,17 @@ public class SettingsUI : MonoBehaviour
         Time.timeScale = 1f;
         settingsPanel.SetActive(false);
         mainMenuPanel.SetActive(true);
-        volumeSlider.value = SettingsManager.Instance.GetVolume();
+
+        float savedVolume = SettingsManager.Instance.GetVolume();
+
+        AudioManager.Instance.SetMusicVolume(savedVolume * 0.5f);
+
+        volumeSlider.value = savedVolume;
         volumeSlider.onValueChanged.AddListener(OnVolumeChanged);
+
         UpdateUI();
     }
+
     #endregion
     #region Input Monitor
     void Update()
@@ -124,7 +131,9 @@ public class SettingsUI : MonoBehaviour
     private void OnVolumeChanged(float value)
     {
         SettingsManager.Instance.SetVolume(value);
+        AudioManager.Instance.SetMusicVolume(value);
     }
+
     #endregion
 
 }

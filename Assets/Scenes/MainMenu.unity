@@ -411,6 +411,11 @@ MonoBehaviour:
   mushroomDeath: {fileID: 8300000, guid: 765c650c6ad1dfd40b5381afe715cfe3, type: 3}
   crowFly: {fileID: 8300000, guid: d1fc5d3c0eb5c77469b33c1df530ab62, type: 3}
   crowSay: {fileID: 8300000, guid: 268f7df11be31134ca4a42032abe1c6b, type: 3}
+  wolfAttack: {fileID: 8300000, guid: f0e9de99391f6e7438512e73a88924ae, type: 3}
+  wolfHurt: {fileID: 8300000, guid: 1089048e4fc69914eb11b38eb8fae3e5, type: 3}
+  wolfDeath: {fileID: 8300000, guid: 529ab01d6f92be14593cc5515bc5127b, type: 3}
+  iceGolemDeath: {fileID: 8300000, guid: f6dea4b0e0308534cbac037af4229ef6, type: 3}
+  iceGolemRun: {fileID: 8300000, guid: 98d434a8a2fe69648bfae2fc755adf76, type: 3}
 --- !u!4 &376904378
 Transform:
   m_ObjectHideFlags: 0

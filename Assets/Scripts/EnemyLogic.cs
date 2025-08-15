@@ -27,8 +27,9 @@ public class EnemyLogic : MonoBehaviour
     [SerializeField] protected float positionX;
     [SerializeField] protected float startingPositionX;
     [SerializeField] protected bool patrolling;
+    [SerializeField] protected bool canPatrol;
     protected bool overrideControl = false;
-    float enemyPlayerDistance;
+    protected float enemyPlayerDistance;
     #endregion
     void Update()
     {
@@ -114,7 +115,7 @@ public class EnemyLogic : MonoBehaviour
     #endregion
 
     #region Delayed actions
-    protected IEnumerator Attack()
+    protected virtual IEnumerator Attack()
     {
         yield return new WaitForSeconds(0.5f);
         animator.SetTrigger("Attack");

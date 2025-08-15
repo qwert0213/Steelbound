@@ -22,6 +22,12 @@ public class AudioManager : MonoBehaviour
     public AudioClip mushroomDeath;
     public AudioClip crowFly;
     public AudioClip crowSay;
+    public AudioClip wolfAttack;
+    public AudioClip wolfHurt;
+    public AudioClip wolfDeath;
+    public AudioClip iceGolemDeath;
+    public AudioClip iceGolemRun;
+
 
     private AudioSource musicSource;
     private AudioSource sfxSource;
@@ -33,7 +39,6 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
-
             musicSource = gameObject.AddComponent<AudioSource>();
             musicSource.loop = true;
 
@@ -52,6 +57,11 @@ public class AudioManager : MonoBehaviour
         if (musicSource.clip == clip) return;
         musicSource.clip = clip;
         musicSource.Play();
+    }
+    public void SetMusicVolume(float volume)
+    {
+        if (musicSource != null)
+            musicSource.volume = volume;
     }
 
     public void StopMusic()

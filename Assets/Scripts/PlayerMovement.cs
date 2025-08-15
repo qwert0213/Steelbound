@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
-
 public class PlayerMovement : MonoBehaviour
 {
     #region Fields
@@ -35,6 +34,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] float speed = 5.0f;
     [SerializeField] float jumpForce = 3.0f;
     [SerializeField] float rollForce = 4.0f;
+    [Header("Level Modifiers")]
+    public bool isSlippery = false;
     #endregion
 
     #region Public Getters
@@ -83,15 +84,41 @@ public class PlayerMovement : MonoBehaviour
         if (controllable)
         {
             #region Speed
-            float inputX = Input.GetAxis("Horizontal");
-
+            float inputX = Input.GetAxisRaw("Horizontal");
             CheckGrounded();
+
+            float targetSpeed = inputX * speed;
+            float acceleration;
+            float deceleration;
+
+            if (isSlippery)
+            {
+                acceleration = 2f;
+                deceleration = 0.5f;
+            }
+            else
+            {
+                acceleration = 8f;
+                deceleration = 6f;
+            }
+
             if (!rolling && !blocking && !immune)
             {
-                body.linearVelocity = new Vector2(inputX * speed, body.linearVelocity.y);
-            }
-            animator.SetFloat("AirSpeedY", body.linearVelocity.y);
+                float velocityX = body.linearVelocity.x;
 
+                if (Mathf.Abs(inputX) > 0.01f)
+                {
+                    velocityX = Mathf.MoveTowards(velocityX, targetSpeed, acceleration * Time.deltaTime);
+                }
+                else
+                {
+                    velocityX = Mathf.MoveTowards(velocityX, 0, deceleration * Time.deltaTime);
+                }
+
+                body.linearVelocity = new Vector2(velocityX, body.linearVelocity.y);
+            }
+
+            animator.SetFloat("AirSpeedY", body.linearVelocity.y);
             #endregion
 
             #region Direction
@@ -110,7 +137,8 @@ public class PlayerMovement : MonoBehaviour
             #region Run
             if (Mathf.Abs(inputX) > 0 && !rolling && !blocking)
             {
-                animator.SetBool("Running", true);            }
+                animator.SetBool("Running", true);
+            }
             else
             {
                 animator.SetBool("Running", false);
@@ -217,33 +245,34 @@ public class PlayerMovement : MonoBehaviour
 
         animator.SetBool("Grounded", grounded);
     }
-
     #endregion
 
     #region Damage Taking
     public void TakeDamage(float damage, float pushForce)
     {
-        health -= damage;
-
-        healthUi.UpdateHealth();
-        immune = true;
-        immuneCurrentDuartion = 0;
-        if (controllable)
+        if (!immune)
         {
-            if (health <= 0)
+            health -= damage;
+            healthUi.UpdateHealth();
+            immune = true;
+            immuneCurrentDuartion = 0;
+            if (controllable)
             {
-                animator.SetTrigger("Die");
-                controllable = false;
-                deathMenu.ShowDeathMenu();
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.playerDeath);
-            }
-            else
-            {
-                Vector2 pushDirection = new Vector2(-direction * pushForce, 1.3f);
-                body.linearVelocity = Vector2.zero;
-                body.AddForce(pushDirection, ForceMode2D.Impulse);
-                animator.SetTrigger("Hurt");
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHurt);
+                if (health <= 0)
+                {
+                    animator.SetTrigger("Die");
+                    controllable = false;
+                    deathMenu.ShowDeathMenu();
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.playerDeath);
+                }
+                else
+                {
+                    Vector2 pushDirection = new Vector2(-direction * pushForce, 1.3f);
+                    body.linearVelocity = Vector2.zero;
+                    body.AddForce(pushDirection, ForceMode2D.Impulse);
+                    animator.SetTrigger("Hurt");
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHurt);
+                }
             }
         }
     }
@@ -257,6 +286,5 @@ public class PlayerMovement : MonoBehaviour
             TakeDamage(1, 7f);
         }
     }
-
     #endregion
 }
