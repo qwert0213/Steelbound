@@ -10,8 +10,10 @@ public class WolfLogic : EnemyLogic
     [SerializeField] private float retreatSpeed = 1.5f;
     [SerializeField] private float retreatTime = 1.0f;
     [SerializeField] private SpriteRenderer spriteRenderer;
+    [SerializeField] private GameObject keyPrefab; 
     private float distToPlayer;
     private bool isAttacking;
+    private Vector3 deathPosition;
     #endregion
     #region Assignements
     private void Awake()
@@ -73,6 +75,12 @@ public class WolfLogic : EnemyLogic
                     overrideControl = false;
                     canAttack = false;
                     body.linearVelocity = Vector2.zero;
+                    deathPosition = transform.position;
+                    WolfLogic[] wolves = FindObjectsByType<WolfLogic>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
+                    if (wolves.Length == 1 && keyPrefab != null)
+                    {
+                        Instantiate(keyPrefab, deathPosition, Quaternion.identity);
+                    }
                     animator.SetTrigger("Die");
                 }
                 else
@@ -149,6 +157,8 @@ public class WolfLogic : EnemyLogic
         isAttacking = false;
     }
     #endregion
+
+
     protected override void PlayDeathSound() { AudioManager.Instance.PlaySFX(AudioManager.Instance.wolfDeath); }
     protected override void PlayHurtSound() { AudioManager.Instance.PlaySFX(AudioManager.Instance.wolfHurt); }
     protected override void PlayDamageSound() { AudioManager.Instance.PlaySFX(AudioManager.Instance.wolfAttack); }

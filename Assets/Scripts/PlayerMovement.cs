@@ -29,6 +29,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float attackDamage = 1;
     [SerializeField] private float attackCooldown = 0.0f;
     [SerializeField] private float attackRange = 2.05f;
+    [SerializeField] private float maxHealth = 3.0f;
     [SerializeField] private float health = 3.0f;
     [Header("Movement Forces")]
     [SerializeField] float speed = 5.0f;
@@ -43,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
     public int CurrentAttack => currentAttack;
     public float AttackDamage => attackDamage;
     public float Health => health;
+    public float MaxHealth => maxHealth;
     public bool IsRolling => rolling;
     public bool IsAttacking => attacking;
     public bool IsGrounded => grounded;
@@ -275,6 +277,13 @@ public class PlayerMovement : MonoBehaviour
                 }
             }
         }
+    }
+    #endregion
+    #region Heal
+    public void Heal(int amount)
+    {
+        health = Mathf.Min(health + amount, maxHealth);
+        healthUi.UpdateHealth();
     }
     #endregion
 

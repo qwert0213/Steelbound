@@ -23,14 +23,11 @@ public class LevelManager : MonoBehaviour
                 coinsToFinish = 70;
                 break;
             case 2: 
-                coinsToFinish = 50;
+                coinsToFinish = 60;
 
                 PlayerMovement pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
                 if (pm != null)
                     pm.isSlippery = true;
-                break;
-            default:
-                coinsToFinish = 70;
                 break;
         }
     }

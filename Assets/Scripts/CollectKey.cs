@@ -15,7 +15,7 @@ public class CollectKey : CollectItem
         if (collect)
         {
             keyCounter.AddQuantity(amount);
-            crow.OnPlayerPickedKey();
+            if (crow != null) crow.OnPlayerPickedKey();
             Destroy(gameObject);
         }
     }

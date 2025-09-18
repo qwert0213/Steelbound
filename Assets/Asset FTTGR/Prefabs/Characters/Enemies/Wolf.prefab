@@ -14,13 +14,13 @@ GameObject:
   - component: {fileID: 7456255257136475084}
   - component: {fileID: 1013744117954101875}
   - component: {fileID: 5989771477847026824}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5709910184101655303
 Transform:
   m_ObjectHideFlags: 0
@@ -77,8 +77,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 368173137
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -3112195067975180470, guid: afb7602f2ec99fd4ba19c0fd8a9641fb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -151,7 +151,7 @@ MonoBehaviour:
   retreatSpeed: 1.5
   retreatTime: 1
   spriteRenderer: {fileID: 0}
-  flashDuration: 0.1
+  keyPrefab: {fileID: 707634542470575706, guid: 66435294d72076c49a592882af0c5ef9, type: 3}
 --- !u!50 &1013744117954101875
 Rigidbody2D:
   serializedVersion: 5
