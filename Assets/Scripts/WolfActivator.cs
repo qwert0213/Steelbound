@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class WolfActivator : MonoBehaviour
 {
+    #region Fields
     [SerializeField] private GameObject[] wolves;
-
+    #endregion
+    #region Activate
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerMovement player = other.GetComponent<PlayerMovement>();
@@ -17,4 +19,5 @@ public class WolfActivator : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    #endregion
 }

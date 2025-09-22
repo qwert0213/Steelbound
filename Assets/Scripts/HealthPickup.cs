@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class HealthPickup : MonoBehaviour
 {
+    #region Fields
     [SerializeField] private int healAmount = 1;
-
+    #endregion
+    #region Pickup
     private void OnTriggerEnter2D(Collider2D other)
     {
         PlayerMovement player = other.GetComponent<PlayerMovement>();
@@ -16,4 +18,5 @@ public class HealthPickup : MonoBehaviour
             }
         }
     }
+    #endregion
 }

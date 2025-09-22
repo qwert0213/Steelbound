@@ -25,6 +25,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip wolfAttack;
     public AudioClip wolfHurt;
     public AudioClip wolfDeath;
+    public AudioClip skeletonAttack;
+    public AudioClip skeletonHurt;
+    public AudioClip skeletonDeath;
     public AudioClip iceGolemDeath;
     public AudioClip iceGolemRun;
 

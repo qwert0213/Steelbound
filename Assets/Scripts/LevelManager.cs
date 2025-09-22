@@ -6,6 +6,7 @@ public class LevelManager : MonoBehaviour
     #region Fields
     public CoinCount coinCounter;
     public GameObject levelEndMenu;
+    public PlayerMovement pm;
     public int coinsToFinish = 70;
     #endregion
 
@@ -16,6 +17,7 @@ public class LevelManager : MonoBehaviour
             levelEndMenu.SetActive(false);
 
         int currentLevel = SceneManager.GetActiveScene().buildIndex;
+        pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
 
         switch (currentLevel)
         {
@@ -24,11 +26,15 @@ public class LevelManager : MonoBehaviour
                 break;
             case 2: 
                 coinsToFinish = 60;
-
-                PlayerMovement pm = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>();
                 if (pm != null)
                     pm.isSlippery = true;
                 break;
+            case 3:
+                coinsToFinish = 60;
+                if (pm != null)
+                    pm.canWallCling = true;
+                break;
+
         }
     }
     #endregion

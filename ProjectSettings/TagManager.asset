@@ -14,6 +14,8 @@ TagManager:
   - Ground
   - Fire
   - Settings
+  - Sticky
+  - Climb
   layers:
   - Default
   - TransparentFX

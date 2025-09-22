@@ -17,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float rollCurrentDuration = 0f;
     [SerializeField] private float immuneDuration = 0.2f;
     [SerializeField] private float immuneCurrentDuartion = 0f;
+    [SerializeField] private float slowTimer = 0f;
     [SerializeField] private bool grounded = false;
     [SerializeField] private bool attacking = false;
     [SerializeField] private bool rolling = false;
@@ -24,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool blocking = false;
     [SerializeField] private bool interacting = false;
     [SerializeField] private bool immune = false;
+    [SerializeField] private bool isSlowed = false;
     [Header("Player Stats")]
     [SerializeField] private int currentAttack = 0;
     [SerializeField] private float attackDamage = 1;
@@ -32,11 +34,20 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float maxHealth = 3.0f;
     [SerializeField] private float health = 3.0f;
     [Header("Movement Forces")]
-    [SerializeField] float speed = 5.0f;
-    [SerializeField] float jumpForce = 3.0f;
-    [SerializeField] float rollForce = 4.0f;
+    [SerializeField] private float originalSpeed = 5.0f;
+    [SerializeField] private float speed = 5.0f;
+    [SerializeField] private float jumpForce = 3.0f;
+    [SerializeField] private float rollForce = 4.0f;
+    [Header("Wall Cling")]
+    [SerializeField] private bool isWallSliding = false;
+    [SerializeField] private bool canWallJump = false;
+    [SerializeField] private float wallSlideSpeed = -1.5f; 
+    [SerializeField] private float wallJumpForce = 3.5f; 
+    [SerializeField] private Vector2 wallJumpDirection = new Vector2(1f, 1f); 
     [Header("Level Modifiers")]
     public bool isSlippery = false;
+    public bool canWallCling = false;
+
     #endregion
 
     #region Public Getters
@@ -102,6 +113,16 @@ public class PlayerMovement : MonoBehaviour
             {
                 acceleration = 8f;
                 deceleration = 6f;
+            }
+
+            if (isSlowed)
+            {
+                slowTimer -= Time.deltaTime;
+                if (slowTimer <= 0f)
+                {
+                    isSlowed = false;
+                    speed = originalSpeed;
+                }
             }
 
             if (!rolling && !blocking && !immune)
@@ -185,13 +206,38 @@ public class PlayerMovement : MonoBehaviour
             #endregion
 
             #region Jump
-            else if (Input.GetKeyDown(KeyCode.Space) && grounded && !rolling && !blocking)
+            else if (Input.GetKeyDown(KeyCode.Space) && !rolling && !blocking)
             {
-                animator.SetTrigger("Jump");
-                grounded = false;
-                animator.SetBool("Grounded", grounded);
-                body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
+                if (grounded)
+                {
+                    animator.SetTrigger("Jump");
+                    grounded = false;
+                    animator.SetBool("Grounded", grounded);
+                    body.linearVelocity = new Vector2(body.linearVelocity.x, jumpForce);
+                }
+                else if (isWallSliding && canWallJump)
+                {
+                    animator.SetTrigger("Jump");
+
+                    float jumpDir = GetComponent<SpriteRenderer>().flipX ? -1f : 1f;
+
+                    float xVelocity = jumpDir * wallJumpForce * 0.5f;   
+                    float yVelocity = wallJumpForce * 2.5f;            
+
+                    body.linearVelocity = new Vector2(xVelocity, yVelocity);
+
+                    isWallSliding = false;
+                    canWallJump = false;
+                }
+
             }
+
+            if (isWallSliding)
+            {
+                if (body.linearVelocity.y < wallSlideSpeed)
+                    body.linearVelocity = new Vector2(body.linearVelocity.x, wallSlideSpeed);
+            }
+
             #endregion
 
             #region Interact
@@ -287,7 +333,7 @@ public class PlayerMovement : MonoBehaviour
     }
     #endregion
 
-    #region Collisions
+    #region Collisions / Trigger
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Fire"))
@@ -295,5 +341,33 @@ public class PlayerMovement : MonoBehaviour
             TakeDamage(1, 7f);
         }
     }
+    
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Sticky"))
+        {
+            TakeDamage(1, 2);
+            isSlowed = true;
+            slowTimer = 5f;
+            speed *= 0.5f;
+            Destroy(collision.gameObject);
+        }
+
+        if (canWallCling && collision.CompareTag("Climb") && !grounded)
+        {
+            isWallSliding = true;
+            canWallJump = true;
+        }
+    }
+
+    void OnTriggerExit2D(Collider2D collision)
+    {
+        if (canWallCling && collision.CompareTag("Climb"))
+        {
+            isWallSliding = false;
+            canWallJump = false;
+        }
+    }
     #endregion
+
 }
