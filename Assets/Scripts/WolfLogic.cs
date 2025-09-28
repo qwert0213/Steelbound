@@ -9,6 +9,7 @@ public class WolfLogic : EnemyLogic
     [SerializeField] private float leapForceY = 3f;
     [SerializeField] private float retreatSpeed = 1.5f;
     [SerializeField] private float retreatTime = 1.0f;
+    [SerializeField] private float maxVerticalDistance = 1.0f;
     [SerializeField] private SpriteRenderer spriteRenderer;
     [SerializeField] private GameObject keyPrefab; 
     private float distToPlayer;
@@ -139,11 +140,14 @@ public class WolfLogic : EnemyLogic
         bool facingEnemy = (player.Direction == 1 && dirToEnemy.x > 0) || (player.Direction == -1 && dirToEnemy.x < 0);
         bool canBlock = blockableAttack && player.Blocking && facingEnemy;
         float distX = Mathf.Abs(player.transform.position.x - transform.position.x);
-        if (distX < attackRange && !canBlock)
+        float distY = Mathf.Abs(player.transform.position.y - transform.position.y);
+
+        if (distX < attackRange && distY <= maxVerticalDistance && !canBlock)
         {
             player.TakeDamage(damage, pushforce);
             PlayDamageSound();
         }
+
         StartCoroutine(ResetAttack(attackResetCooldown));
         int retreatDir = -leapDir;
         float retreatTimer = 0f;

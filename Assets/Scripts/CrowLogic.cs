@@ -15,6 +15,8 @@ public class CrowLogic : EnemyLogic
     public float flySpeed = 5f;
     public float grabDistance = 10f;
     public Vector3 carryOffset = new Vector3(0, 1.5f, 0);
+    private bool crowSoundPlaying = false;
+    private bool crowSayPlaying = false;
 
     [Header("Child References")]
     public Transform spriteHolder;
@@ -81,14 +83,17 @@ public class CrowLogic : EnemyLogic
                 break;
 
             case CrowState.GoToPlayer:
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.crowSay);
                 MoveTowards(playerT.position + carryOffset);
                 if (Vector3.Distance(transform.position, playerT.position + carryOffset) <= grabDistance)
                     GrabPlayer();
+
+                if (!crowSoundPlaying)
+                    StartCoroutine(PlayCrowFlySFX());
                 break;
 
+
             case CrowState.Grab:
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.crowSay);
+             PlayCrowSay();
                 break;
 
             case CrowState.Ascend:
@@ -99,7 +104,7 @@ public class CrowLogic : EnemyLogic
                 break;
 
             case CrowState.CarryToTarget:
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.crowSay);
+                PlayCrowSay();
                 MoveTowards(dropPoint.position);
                 if (!useParenting && carrying) FollowCarryPoint();
                 if (Vector3.Distance(transform.position, dropPoint.position) <= 0.1f)
@@ -255,19 +260,40 @@ public class CrowLogic : EnemyLogic
         {
             case CrowState.Idle:
             case CrowState.Release:
-                AudioManager.Instance.StopLoopSFX();
                 SetAnimTrigger("Idle");
                 break;
 
             case CrowState.GoToPlayer:
             case CrowState.Ascend:
             case CrowState.CarryToTarget:
-                AudioManager.Instance.PlayLoopSFX(AudioManager.Instance.crowFly);
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.crowFly);
                 SetAnimTrigger("Fly");
                 break;
         }
     }
 
+    #region Sound
+    private IEnumerator PlayCrowFlySFX()
+    {
+        crowSoundPlaying = true;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.crowFly);
+        yield return new WaitForSeconds(1f);
+        crowSoundPlaying = false;
+    }
+    private void PlayCrowSay()
+    {
+        if (!crowSayPlaying)
+            StartCoroutine(PlayCrowSayCoroutine());
+    }
+
+    private IEnumerator PlayCrowSayCoroutine()
+    {
+        crowSayPlaying = true;
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.crowSay);
+        yield return new WaitForSeconds(1.5f); 
+        crowSayPlaying = false;
+    }
+    #endregion
 
     private void SetAnimTrigger(string trig)
     {

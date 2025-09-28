@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,8 +7,14 @@ public class LevelManager : MonoBehaviour
     #region Fields
     public CoinCount coinCounter;
     public GameObject levelEndMenu;
+    public GameObject gameCompleteMenu;
     public PlayerMovement pm;
     public int coinsToFinish = 70;
+    [Header("Cutscene")]
+    public GameObject crowPrefab;
+    public float cutsceneDelay = 2f;
+    private bool levelEnding = false; 
+
     #endregion
 
     #region Base
@@ -42,7 +49,7 @@ public class LevelManager : MonoBehaviour
     #region Completion
     private void Update()
     {
-        if (coinCounter != null && coinCounter.Count >= coinsToFinish)
+        if (!levelEnding && coinCounter != null && coinCounter.Count >= coinsToFinish)
         {
             LevelComplete();
         }
@@ -50,11 +57,48 @@ public class LevelManager : MonoBehaviour
 
     private void LevelComplete()
     {
-        if (levelEndMenu != null)
-            levelEndMenu.SetActive(true);
-
-        Time.timeScale = 0f;
+        levelEnding = true;
+        StartCoroutine(EndLevelSequence());
     }
+
+    private IEnumerator EndLevelSequence()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Vector3 spawnPos = pm.transform.position + new Vector3(0, 15f, 0);
+            GameObject crowObj = Instantiate(crowPrefab, spawnPos, Quaternion.identity);
+
+            CrowLogic crow = crowObj.GetComponent<CrowLogic>();
+            if (crow != null)
+                crow.state = CrowLogic.CrowState.GoToPlayer;
+
+            yield return new WaitForSeconds(cutsceneDelay);
+            Destroy(crowObj);
+        }
+
+        int currentLevel = SceneManager.GetActiveScene().buildIndex;
+
+        if (currentLevel != 3)
+        {
+            StoryManager.Instance.PlayLevelOutro(() =>
+            {
+                levelEndMenu.SetActive(true);
+                Time.timeScale = 0f;
+            });
+        }
+        else
+        {
+            AudioManager.Instance.StopMusic();
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.alarmClock);
+            StoryManager.Instance.PlayLevelOutro(() =>
+            {
+                gameCompleteMenu.SetActive(true);
+                Time.timeScale = 0f;
+                AudioManager.Instance.PlayMusic(AudioManager.Instance.menuMusic); 
+            });
+        }
+    }
+
     #endregion
 
     #region Buttons

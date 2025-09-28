@@ -15,6 +15,7 @@ public class AudioManager : MonoBehaviour
     public AudioClip playerHurt;
     public AudioClip playerWalk;
     public AudioClip playerDeath;
+    public AudioClip alarmClock;
 
     [Header("Enemy SFX")]
     public AudioClip mushroomAttack;
@@ -59,7 +60,9 @@ public class AudioManager : MonoBehaviour
     {
         if (musicSource.clip == clip) return;
         musicSource.clip = clip;
+        musicSource.volume *= 0.3f;
         musicSource.Play();
+
     }
     public void SetMusicVolume(float volume)
     {
