@@ -67,11 +67,9 @@ public class LevelManager : MonoBehaviour
         {
             Vector3 spawnPos = pm.transform.position + new Vector3(0, 15f, 0);
             GameObject crowObj = Instantiate(crowPrefab, spawnPos, Quaternion.identity);
-
             CrowLogic crow = crowObj.GetComponent<CrowLogic>();
             if (crow != null)
                 crow.state = CrowLogic.CrowState.GoToPlayer;
-
             yield return new WaitForSeconds(cutsceneDelay);
             Destroy(crowObj);
         }

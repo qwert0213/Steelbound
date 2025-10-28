@@ -218,18 +218,13 @@ public class PlayerMovement : MonoBehaviour
                 else if (isWallSliding && canWallJump)
                 {
                     animator.SetTrigger("Jump");
-
                     float jumpDir = GetComponent<SpriteRenderer>().flipX ? -1f : 1f;
-
                     float xVelocity = jumpDir * wallJumpForce * 0.5f;   
                     float yVelocity = wallJumpForce * 2.5f;            
-
                     body.linearVelocity = new Vector2(xVelocity, yVelocity);
-
                     isWallSliding = false;
                     canWallJump = false;
                 }
-
             }
 
             if (isWallSliding)
@@ -278,19 +273,16 @@ public class PlayerMovement : MonoBehaviour
         Vector2 leftRayOrigin = new Vector2(transform.position.x - rayOffset, transform.position.y - boxCollider.bounds.extents.y - 0.05f);
         Vector2 centerRayOrigin = new Vector2(transform.position.x, transform.position.y - boxCollider.bounds.extents.y - 0.05f);
         Vector2 rightRayOrigin = new Vector2(transform.position.x + rayOffset, transform.position.y - boxCollider.bounds.extents.y - 0.05f);
-
         if (body.linearVelocity.y > 0)
         {
             grounded = false;
             animator.SetBool("Grounded", false);
             return;
         }
-
         RaycastHit2D leftHit = Physics2D.Raycast(leftRayOrigin, Vector2.down, rayLength, LayerMask.GetMask("Ground"));
         RaycastHit2D centerHit = Physics2D.Raycast(centerRayOrigin, Vector2.down, rayLength, LayerMask.GetMask("Ground"));
         RaycastHit2D rightHit = Physics2D.Raycast(rightRayOrigin, Vector2.down, rayLength, LayerMask.GetMask("Ground"));
         grounded = leftHit.collider != null || centerHit.collider != null || rightHit.collider != null;
-
         animator.SetBool("Grounded", grounded);
     }
     #endregion
@@ -352,7 +344,6 @@ public class PlayerMovement : MonoBehaviour
             speed *= 0.5f;
             Destroy(collision.gameObject);
         }
-
         if (canWallCling && collision.CompareTag("Climb") && !grounded)
         {
             isWallSliding = true;

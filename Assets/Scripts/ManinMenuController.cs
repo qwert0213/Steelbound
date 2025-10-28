@@ -16,7 +16,7 @@ public class MainMenuController : MonoBehaviour
         quitButton = GameObject.Find("QuitButton").GetComponent<Button>();
 
         startButton.onClick.RemoveAllListeners();
-        startButton.onClick.AddListener(() => SceneManager.LoadScene("Level2"));
+        startButton.onClick.AddListener(() => SceneManager.LoadScene("Level1"));
         Time.timeScale = 1f;
 
         quitButton.onClick.RemoveAllListeners();
