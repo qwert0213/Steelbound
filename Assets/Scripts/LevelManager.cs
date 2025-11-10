@@ -70,8 +70,7 @@ public class LevelManager : MonoBehaviour
             CrowLogic crow = crowObj.GetComponent<CrowLogic>();
             if (crow != null)
                 crow.state = CrowLogic.CrowState.GoToPlayer;
-            yield return new WaitForSeconds(cutsceneDelay);
-            Destroy(crowObj);
+            yield return new WaitForSeconds(cutsceneDelay+1);
         }
 
         int currentLevel = SceneManager.GetActiveScene().buildIndex;

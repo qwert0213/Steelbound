@@ -162,6 +162,9 @@ public class SkeletonLogic : EnemyLogic
         body.linearVelocity = Vector2.zero;
         deathPosition = transform.position;
         animator.SetBool("Run", false);
+        Collider2D col = GetComponent<Collider2D>();
+        col.enabled = false;
+        body.bodyType = RigidbodyType2D.Kinematic;
         animator.SetTrigger("Die");
         StartCoroutine(HandleDeath());
     }

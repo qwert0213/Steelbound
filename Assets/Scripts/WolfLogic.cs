@@ -14,6 +14,7 @@ public class WolfLogic : EnemyLogic
     [SerializeField] private GameObject keyPrefab; 
     private float distToPlayer;
     private bool isAttacking;
+    private bool hasDroppedKey = false;
     private Vector3 deathPosition;
     #endregion
     #region Assignements
@@ -78,9 +79,10 @@ public class WolfLogic : EnemyLogic
                     body.linearVelocity = Vector2.zero;
                     deathPosition = transform.position;
                     WolfLogic[] wolves = FindObjectsByType<WolfLogic>(FindObjectsInactive.Exclude, FindObjectsSortMode.None);
-                    if (wolves.Length == 1 && keyPrefab != null)
+                    if (wolves.Length == 1 && keyPrefab != null && !hasDroppedKey)
                     {
                         Instantiate(keyPrefab, deathPosition, Quaternion.identity);
+                        hasDroppedKey = true;
                     }
                     animator.SetTrigger("Die");
                 }

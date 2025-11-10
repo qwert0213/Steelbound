@@ -812,6 +812,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Golden Coin
       objectReference: {fileID: 0}
+    - target: {fileID: 3743935330074388622, guid: 2d145d638be1e6741b7ff46ee10205c1, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4678024968310451021, guid: 2d145d638be1e6741b7ff46ee10205c1, type: 3}
       propertyPath: counter
       value: 

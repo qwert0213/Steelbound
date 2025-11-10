@@ -12,6 +12,7 @@ public class HeroLogic : EnemyLogic
     [SerializeField] private GameObject gnomePrefab;
     private SpriteRenderer spriteRenderer;
     private bool isAttacking = false;
+    private bool isAlive = true;
     public bool hasRetreated = false;
 
     private void Awake()
@@ -43,7 +44,7 @@ public class HeroLogic : EnemyLogic
         if (!overrideControl && !isAttacking)
         {
             float distToPlayer = Mathf.Abs(player.transform.position.x - transform.position.x);
-            if (distToPlayer < visionRange && distToPlayer > attackRange)
+            if (distToPlayer < visionRange && distToPlayer > attackRange && isAlive)
             {
                 FollowPlayer();
             }
@@ -131,6 +132,7 @@ public class HeroLogic : EnemyLogic
 
     private IEnumerator FinalRetreat()
     {
+        isAlive = false;
         overrideControl = true;
         canAttack = false;
         damageable = false;
